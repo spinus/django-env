@@ -1,0 +1,3 @@
+DJANGO_ENV='py_env'
+DJANGO_ENV_REQUIREMENTS='requirements.pip'
+DJANGO_ENV_AUTOUPDATE=False

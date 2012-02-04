@@ -1,0 +1,8 @@
+build
+dist
+docs/build/*
+*.pyc
+*~
+*egg*
+test_project/py_env/
+
