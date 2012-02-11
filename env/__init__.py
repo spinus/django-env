@@ -105,15 +105,33 @@ def update(upgrade=False):
                                           DJANGO_ENV_UPDATE_REQUIREMENTS))
     log.info('Updating environment in: %s' % path)
     import virtualenv as ve
-    print ' * Updating pip packages from %s' % req
-    from pip.baseparser import parser
-    import pip.commands.install
-    i = pip.commands.install.InstallCommand()
-    params = ['install', '-r', req]
-    if upgrade:
-        params.append('-U')
-    opt, args = parser.parse_args(params)
-    i.main(args, args[1:], opt)
+    log.info('Updating pip packages from: %s' % req)
+    try:
+        from pip.baseparser import parser
+        import pip.commands.install
+        i = pip.commands.install.InstallCommand()
+        params = ['install', '-r', req]
+        params.extend(
+                 getattr(settings, 'DJANGO_ENV_UPDATE_PIP_ARGUMENTS',
+                         DJANGO_ENV_UPDATE_PIP_ARGUMENTS)
+        )
+
+        if upgrade:
+            params.append('-U')
+        opt, args = parser.parse_args(params)
+        opt.venv = path
+        opt.venv_base = path
+        opt.respect_venv = True
+        opt.require_venv = True
+        opt.no_input = True
+        opt.verbose = 2
+        log.debug('PIP parsed opts: %s' % opt)
+        log.debug('PIP parsed args: %s' % args)
+
+        log.debug('PIP exec: %s' % i.main(args, args[1:], opt))
+    except Exception as e:
+        log.exception("Error in PIP: %s", e)
+        return
 
 
 def delete():
