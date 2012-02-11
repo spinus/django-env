@@ -8,7 +8,7 @@ from env import VERSION
 setup(author="Tomek Czyż",
       author_email='tomekczyz@gmail.com',
       description='Automaticly manages virtualenv for django project',
-      long_description=open('readme.rst').read(),
+      long_description=open('readme').read(),
       license="BSD",
       platforms='OS Independent',
       name="django-env",
