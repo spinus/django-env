@@ -145,3 +145,31 @@ def delete():
         return
     import shutil
     shutil.rmtree(path)
+
+
+##
+# MAIN PART
+##
+
+try:
+    if sys.argv[1] == 'env_create':
+        if '--force' in sys.argv[1:]:
+            log.info('Creating env with --force')
+            delete()
+        create()
+        sys.exit(0)
+    elif sys.argv[1] == 'env_update':
+        activate()
+        upgrade = True if '--upgrade' in sys.argv[1:] else False
+        update(upgrade)
+        sys.exit(0)
+    elif sys.argv[1] == 'env_delete':
+        delete()
+        sys.exit(0)
+        #: .. todo:: env_make_bundle
+        #: .. todo:: env_deploy_bundle
+except IndexError:
+    # pass control to django if no arguments
+    pass
+log.debug('Trying to activate django-env')
+activate()
