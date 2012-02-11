@@ -11,7 +11,7 @@ from logging import getLogger
 import logging
 
 log = getLogger('django-env')
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.INFO)
 
 stdout_formatter = logging.Formatter(" * [%(levelname)-7s] - %(message)s")
 stdout_handler = logging.StreamHandler()
