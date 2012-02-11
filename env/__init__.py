@@ -1,22 +1,30 @@
 import os
 import sys
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from .settings import DJANGO_ENV, DJANGO_ENV_REQUIREMENTS
-from .settings import DJANGO_ENV_AUTOUPDATE
 
-VERSION = "0.1"
+from .settings import DJANGO_ENV_NAME
+from .settings import DJANGO_ENV_UPDATE_PIP_ARGUMENTS
+from .settings import DJANGO_ENV_UPDATE_REQUIREMENTS
+from .settings import DJANGO_ENV_CREATE_AUTOUPDATE
+from .settings import DJANGO_ENV_CREATE_SITEPACKAGES
 
 PROJECT_PATH = os.path.abspath('.')
 
        # os.path.dirname(os.path.normpath(
        #             os.sys.modules[settings].__file__))
 
-path = getattr(settings, 'DJANGO_ENV', DJANGO_ENV)
+VERSION = "0.2"
+
+# SET PATHS
+
+PROJECT_PATH = os.path.abspath('.')
+log.debug('project base: %s' % PROJECT_PATH)
+
+path = getattr(settings, 'DJANGO_ENV_NAME', DJANGO_ENV_NAME)
 
 if not os.path.isabs(path):
     path = os.path.join(PROJECT_PATH, path)
 
+# Try to load projects settings
 
 def setup(autocreate=False):
     global path
