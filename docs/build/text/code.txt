@@ -1,0 +1,22 @@
+
+Python modules documentation
+****************************
+
+env.activate()
+
+   Activate environment - call env/bin/activate_this.py.
+
+env.create()
+
+   If path with environment not exists, create new one. If path
+   exists, you can force recreating by passing *--force*. If
+   *DJANGO_ENV_CREATE_AUTOUPDATE* is set to *True*, call *env_update*.
+
+env.delete()
+
+   If virtual environment's directory exists, delete it.
+
+env.update(upgrade=False)
+
+   Install packages in virtual environment (call pip install -r
+   DJANGO_ENV_UPDATE_REQUIREMENTS)
