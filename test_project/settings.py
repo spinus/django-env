@@ -145,6 +145,4 @@ LOGGING = {
     }
 }
 
-DJANGO_ENV_AUTOCREATE=False
-from env import setup
-#setup()
+DJANGO_ENV_CREATE_AUTOUPDATE=True
