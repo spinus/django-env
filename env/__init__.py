@@ -100,9 +100,15 @@ def update(upgrade=False):
         log.error('Path with environment (%s) not exist. Run `env_create` '
                   'first')
         return
-    req = os.path.join(PROJECT_PATH,
-                       getattr(settings, 'DJANGO_ENV_UPDATE_REQUIREMENTS',
-                                          DJANGO_ENV_UPDATE_REQUIREMENTS))
+    req_name = getattr(settings, 'DJANGO_ENV_UPDATE_REQUIREMENTS',
+                                  DJANGO_ENV_UPDATE_REQUIREMENTS)
+    req = req_name 
+
+    if os.path.isabs(req_name):
+        req = req_name
+    else:
+        req = os.path.join(PROJECT_PATH, req_name)
+
     log.info('Updating environment in: %s' % path)
     import virtualenv as ve
     log.info('Updating pip packages from: %s' % req)
