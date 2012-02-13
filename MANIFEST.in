@@ -2,3 +2,4 @@ include readme.rst
 recursive-include docs *rst *py Makefile *bat
 include docs/build
 recursive-include test_project *py
+include readme
