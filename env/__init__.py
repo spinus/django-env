@@ -21,7 +21,7 @@ log.addHandler(stdout_handler)
 log.debug('-- DJANGO-ENV START --')
 log.debug('settings: %s' % settings)
 
-VERSION = "0.2"
+VERSION = "0.2.1"
 
 # SET PATHS
 
